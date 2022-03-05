@@ -7,10 +7,10 @@
 using namespace std;
 
 // vector<int> read_data - takes read_data.txt as an argument and returns the data as a vector<int>
-// vector<int> sort_data - takes a vector<int> and vecSize as an argument and sorts it, returns a new sorted vector<int>
+// vector<int> sort_data - takes a vector<int> as an argument and sorts it, returns a new sorted vector<int>
 // int max - takes a sorted vector<int> as an argument and returns the maximum value
 // int min - takes a sorted vector<int> as an argument and returns the minimum value
-// float avg - takes a vector<int> and vecSize as an argument and returns the average
+// float avg - takes a vector<int> as an argument and returns the average
 // vector<int> frequency - takes a sorted vector<int> as an argument and returns a vector that contains the count of a number connected via subscript (i.e., #1 = vector[0], where vector[0] contains 3. #1's frequency is 3.). parallel array
 // void output_file - takes frequency vector<int>, min, max, and avg as an argument and outputs formatted data into frequency.txt
 // void swap - takes reference arguments a & b and swaps them. use for sorting
@@ -93,18 +93,12 @@ vector<int> read_data(string inputFile) {
 
 vector<int> sort_data(vector<int> rawData, int vecSize){
     int minIndex, minValue;
-    int sizeVec = 0;
-
-    // get the size of the vector
-    for (int i : rawData){
-        sizeVec++;
-    }
 
     // selection sort
-    for (int start = 0; start < (sizeVec-1); start++){
+    for (int start = 0; start < (vecSize-1); start++){
         minIndex = start;
         minValue = rawData[start];
-        for(int index = start + 1; index < sizeVec; index++){
+        for(int index = start + 1; index < vecSize; index++){
             if (rawData[index] < minValue){
                 minValue = rawData[index];
                 minIndex = index;
@@ -149,6 +143,6 @@ float avg(vector<int> sortedData, int vecSize){
 
     // round to 2 decimal points
     average_2pt = ceil((sum / vecSize) * 100.0) / 100.0;
-
+    //cout << "avg " << average_2pt << endl;
     return average_2pt;
 }

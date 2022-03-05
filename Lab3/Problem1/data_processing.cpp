@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -14,41 +16,56 @@ using namespace std;
 // void swap - takes reference arguments a & b and swaps them. use for sorting
 
 vector<int> read_data(string inputFile);
-vector<int> sort_data(vector<int> rawData);
+vector<int> sort_data(vector<int> rawData, int vecSize);
 vector<int> frequency(vector<int> sortedData);
 
 int max_val(vector<int> sortedData);
 int min_val(vector<int> sortedData);
-float avg(vector<int> sortedData);
+float avg(vector<int> sortedData, int vecSize);
 
 void output_file(vector<int> frequencyData, int maxValue, int minValue, float avgValue);
 void swap(int &a, int&b);
 
 int main(){
+    
     string file = "data.txt";
+    int vecSize = 0;
 
     vector<int> rawData = read_data(file);
-    vector<int> sortedData = sort_data(rawData);
-    vector<int> frequencyData = frequency(sortedData);
 
-    int maxValue = max_val(sortedData);
+    //TEST VECTOR
+    //vector<int> rawData = {1, 65, 2, 63, 643, 42, 11, 33, 55}; 
+
+    // get the vector size to use in other functions
+    for (int h : rawData){
+        vecSize++;
+    }
+
+    vector<int> sortedData = sort_data(rawData, vecSize);
+    //vector<int> frequencyData = frequency(sortedData);
+
     int minValue = min_val(sortedData);
+    int maxValue = max_val(sortedData);
     
-    float avgValue = avg(sortedData);
+    float avgValue = avg(sortedData, vecSize);
     
-    output_file(frequencyData, maxValue, minValue, avgValue);
+    //output_file(frequencyData, maxValue, minValue, avgValue);
 
     //DEBUG
     //read_data(file);
     return 0;
 }
 
+// swap function for sorting
 void swap(int &a, int &b) {
+
     int temp = a;
     a = b;
     b = temp;
+
 }
 
+/*
 vector<int> read_data(string inputFile) {
 
     string word;
@@ -71,4 +88,67 @@ vector<int> read_data(string inputFile) {
         //i++;
     }
 
+}
+*/
+
+vector<int> sort_data(vector<int> rawData, int vecSize){
+    int minIndex, minValue;
+    int sizeVec = 0;
+
+    // get the size of the vector
+    for (int i : rawData){
+        sizeVec++;
+    }
+
+    // selection sort
+    for (int start = 0; start < (sizeVec-1); start++){
+        minIndex = start;
+        minValue = rawData[start];
+        for(int index = start + 1; index < sizeVec; index++){
+            if (rawData[index] < minValue){
+                minValue = rawData[index];
+                minIndex = index;
+            }
+        }
+        swap(rawData[minIndex], rawData[start]);
+    }  
+
+    // check if array sorted
+    for (int j : rawData){
+        cout << j << endl;
+    }
+
+    return rawData;
+}
+
+// min value is the first element in a sorted vector
+int min_val(vector<int> sortedData){\
+
+    cout << "Sorted Data Min Value: " << sortedData[0] << endl;
+
+    return sortedData[0];
+}
+
+// max value is the last element in a sorted vector
+int max_val(vector<int> sortedData){
+
+    cout << "Sorted Data Max Value: " << sortedData[sortedData.size()-1] << endl;
+
+    return sortedData[sortedData.size()-1];
+}
+
+// compute the average of the vector
+float avg(vector<int> sortedData, int vecSize){
+    
+    double sum = 0.0;
+    double average_2pt = 0.0;
+
+    for (int i : sortedData){
+        sum += i;
+    }
+
+    // round to 2 decimal points
+    average_2pt = ceil((sum / vecSize) * 100.0) / 100.0;
+
+    return average_2pt;
 }

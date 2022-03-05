@@ -122,7 +122,7 @@ vector<int> sort_data(vector<int> rawData, int vecSize){
 }
 
 // min value is the first element in a sorted vector
-int min_val(vector<int> sortedData){\
+int min_val(vector<int> sortedData){
 
     cout << "Sorted Data Min Value: " << sortedData[0] << endl;
 

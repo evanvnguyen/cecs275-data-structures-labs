@@ -7,10 +7,10 @@
 using namespace std;
 
 // vector<int> read_data - takes read_data.txt as an argument and returns the data as a vector<int>
-// vector<int> sort_data - takes a vector<int> as an argument and sorts it, returns a new sorted vector<int>
+// vector<int> sort_data - takes a vector<int> and vecSize as an argument and sorts it, returns a new sorted vector<int>
 // int max - takes a sorted vector<int> as an argument and returns the maximum value
 // int min - takes a sorted vector<int> as an argument and returns the minimum value
-// float avg - takes a vector<int> as an argument and returns the average
+// float avg - takes a vector<int> and vecSize as an argument and returns the average
 // vector<int> frequency - takes a sorted vector<int> as an argument and returns a vector that contains the count of a number connected via subscript (i.e., #1 = vector[0], where vector[0] contains 3. #1's frequency is 3.). parallel array
 // void output_file - takes frequency vector<int>, min, max, and avg as an argument and outputs formatted data into frequency.txt
 // void swap - takes reference arguments a & b and swaps them. use for sorting

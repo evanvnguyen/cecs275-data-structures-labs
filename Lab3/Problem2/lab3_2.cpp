@@ -16,8 +16,8 @@ int main(){
     cout << "-------------------------------------------------\n";
 
     // FUNCTION 2: concat
-    // result_maxlength = 5.
-    // max length 10 and 20 are outputted during function execution.
+    // result_maxlength = 5. starting max_length
+    // max length 10 and 20 are outputted, as seein in the sample run
     cout << "FUNCTION 2: concat \n";
     int result_maxlength = 5;
     const char a[] = "chicken";
@@ -25,7 +25,6 @@ int main(){
     char result[result_maxlength]; // buffer result
     concat(a, b, result, result_maxlength); 
     cout << "\n*************************************************\n";
-
     return 0;
 }
 
@@ -66,7 +65,7 @@ void reverse(char s[]){
     }
     cout <<"\".";
     cout << endl;
-
+    
 }
 
 void concat(const char a[], const char b[], char result[], int result_maxlength){
@@ -100,24 +99,26 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
         }
         i++;
     }
+
     int sizeBoth = sizeOfA + sizeOfB;
     char buffer[sizeBoth];
     char *ptr = buffer; // pointer to buffer
 
-    for (int j = 0; j <= sizeOfA-1; j++){ // add array a via dereference. -1 to remove null character
+    // add array a and b via dereference. -1 to remove null character
+    for (int j = 0; j <= sizeOfA-1; j++){ 
         *ptr++ = a[j];
     }
-    for (int k = 0; k <= sizeOfB-1; k++){ // add array b via dereference
+    for (int k = 0; k <= sizeOfB-1; k++){ 
         *ptr++ = b[k];
     }
 
-    //point to original char a[]
+    // point to original char a[]
     cout << "If char a[] = \"";
     for (int i = 0; i <= sizeOfA; i++){
         cout << ptrA[i];
     }
 
-    //point to original char b[]
+    // point to original char b[]
     cout << "\" and char b[] = \"";
     for (int i = 0; i <= sizeOfB; i++){
         cout << ptrB[i];
@@ -127,13 +128,11 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
     // If result_maxlength is greater than sizeBoth,
     // just output the entire string. Ignore extraneous characters.
     // Accessing out of bound array elements results in weird characters
-
     cout << "\"\nthen:";
 
     // this code block creates  test
     // cases as seen in the sample run.
     int testCase = 0;
-    int *ptrL = &result_maxlength;
     while (testCase != 3){
 
         int outLength = result_maxlength;
@@ -147,7 +146,7 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
         }
 
         cout << "\"";
-        *ptrL *= 2;
+        result_maxlength *= 2;
         testCase++;
     }
 }

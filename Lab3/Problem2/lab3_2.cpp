@@ -61,7 +61,7 @@ void reverse(char s[]){
     // define new string with new size
     char newStr[sizeOf];
     for (int i = 0; i <= sizeOf; i++){
-        newStr[i] = (*(ptr + (sizeOf - i)));
+        newStr[i] = ptr[sizeOf - i];
         cout << newStr[i];
     }
     cout <<"\".";
@@ -80,7 +80,7 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
     int sizeOfA = 0;
     bool isDone = false;
     while(isDone == false){
-        if (*(ptrA + i)) {
+        if (ptrA[i]) {
             sizeOfA++; // still in the array
         } else {
             isDone = true; // not in the array, flag isDone
@@ -93,7 +93,7 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
     int sizeOfB = 0;
     isDone = false;
     while(isDone == false){
-        if (*(ptrB + i)) {
+        if (ptrB[i]) {
             sizeOfB++; // still in the array
         } else {
             isDone = true; // not in the array, flag isDone

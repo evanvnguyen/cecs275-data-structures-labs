@@ -6,25 +6,31 @@ void reverse(char s[]);
 void concat(const char a[], const char b[], char result[], int result_maxlength);
 
 int main(){
-
+    cout << "*******************TESTING***********************\n";
     // FUNCTION 1: reverse
     // change s[] to get varying outputs
-    char s[] = "Hello, my name is Evan.";
+    cout << "FUNCTION 1: reverse \n";
+    char s[] = "Hello, I am Evan.";
     reverse(s);
 
+    cout << "-------------------------------------------------\n";
+
     // FUNCTION 2: concat
-    // change result_maxlength to get varying outputs
-    int result_maxlength = 10;
+    // result_maxlength = 5.
+    // max length 10 and 20 are outputted during function execution.
+    cout << "FUNCTION 2: concat \n";
+    int result_maxlength = 5;
     const char a[] = "chicken";
     const char b[] = "waffle";
     char result[result_maxlength]; // buffer result
     concat(a, b, result, result_maxlength); 
+    cout << "\n*************************************************\n";
 
     return 0;
 }
 
 void reverse(char s[]){
-
+    
     // create pointer to char
     char *ptr = s;
     int i = 0;
@@ -41,12 +47,24 @@ void reverse(char s[]){
         i++;
     }
 
+    // I think its better to point rather than access directly,
+    // hence why i created char *ptr = s rather than
+    // doing *(s + 1) and so forth.
+    cout << "\"";
+    for (int i = 0; i <= sizeOf; i++){
+        cout << ptr[i];
+    } 
+    cout << "\"";
+    cout << " becomes ";
+    cout <<"\"";
+
     // define new string with new size
     char newStr[sizeOf];
     for (int i = 0; i <= sizeOf; i++){
         newStr[i] = (*(ptr + (sizeOf - i)));
         cout << newStr[i];
     }
+    cout <<"\".";
     cout << endl;
 
 }
@@ -82,20 +100,55 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
         }
         i++;
     }
-
-    char buffer[sizeOfA + sizeOfB];
+    int sizeBoth = sizeOfA + sizeOfB;
+    char buffer[sizeBoth];
     char *ptr = buffer; // pointer to buffer
 
     for (int j = 0; j <= sizeOfA-1; j++){ // add array a via dereference. -1 to remove null character
         *ptr++ = a[j];
     }
-    for (int k = 0; k <= sizeOfB; k++){ // add array b via dereference
+    for (int k = 0; k <= sizeOfB-1; k++){ // add array b via dereference
         *ptr++ = b[k];
     }
 
-    // output it based on the result_maxlength
-    for (int o = 0; o < result_maxlength; o++){
-        cout << buffer[o];
+    //point to original char a[]
+    cout << "If char a[] = \"";
+    for (int i = 0; i <= sizeOfA; i++){
+        cout << ptrA[i];
     }
-    cout << endl;
+
+    //point to original char b[]
+    cout << "\" and char b[] = \"";
+    for (int i = 0; i <= sizeOfB; i++){
+        cout << ptrB[i];
+    }    
+
+    // -Output the buffer
+    // If result_maxlength is greater than sizeBoth,
+    // just output the entire string. Ignore extraneous characters.
+    // Accessing out of bound array elements results in weird characters
+    // to output
+
+    cout << "\"\nthen:";
+
+    // this code block creates  test
+    // cases as seen in the sample run.
+    int testCase = 0;
+    int *ptrL = &result_maxlength;
+    while (testCase != 3){
+
+        int outLength = result_maxlength;
+        if (result_maxlength > sizeBoth){
+            outLength = sizeBoth;
+        }
+
+        cout << "\nmax_length = " << result_maxlength << " ---> \"";
+        for (int o = 0; o < outLength; o++){
+            cout << buffer[o];
+        }
+
+        cout << "\"";
+        *ptrL *= 2;
+        testCase++;
+    }
 }

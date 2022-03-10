@@ -127,7 +127,6 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
     // If result_maxlength is greater than sizeBoth,
     // just output the entire string. Ignore extraneous characters.
     // Accessing out of bound array elements results in weird characters
-    // to output
 
     cout << "\"\nthen:";
 

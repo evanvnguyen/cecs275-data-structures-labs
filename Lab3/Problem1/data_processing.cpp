@@ -64,32 +64,39 @@ void swap(int &a, int &b) {
     b = temp;
 
 }
+void convert(char num_Temp){
+    char d = num_Temp;
+    string y = "";
+    y += d;
+    int num_Converted;
+    num_Converted = stoi(y);
+    cout << num_Converted;
+}
 
-/*
 vector<int> read_data(string inputFile) {
-
     string word;
-    string tempWord;
-    vector<string> temp;
     ifstream inFile;
     inFile.open(inputFile);
-
     if (inFile){
-        cout << "open success!";
+        cout << "Open success!" << endl;
     }
-
     //int i = 0;
     while(inFile >> word){
         for (int j = 0; j < word.length(); j++){
-            cout << word[j-1] << endl;
-        }
+            if (word[j]==','){
+                word.erase(j);
+                cout << " ";
+            }
+            else{
+            convert(word[j]);
+            }
+
         //temp.push_back(word);
         //cout << temp[i] << endl;
         //i++;
+        }
     }
-
 }
-*/
 
 vector<int> sort_data(vector<int> rawData, int vecSize){
     int minIndex, minValue;

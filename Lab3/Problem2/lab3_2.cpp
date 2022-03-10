@@ -132,21 +132,22 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
 
     // this code block creates  test
     // cases as seen in the sample run.
+    int *ptrR = &result_maxlength;
     int testCase = 0;
     while (testCase != 3){
 
-        int outLength = result_maxlength;
-        if (result_maxlength > sizeBoth){
+        int outLength = *ptrR;
+        if (*ptrR > sizeBoth){
             outLength = sizeBoth;
         }
 
-        cout << "\nmax_length = " << result_maxlength << " ---> \"";
+        cout << "\nmax_length = " << *ptrR << " ---> \"";
         for (int o = 0; o < outLength; o++){
             cout << buffer[o];
         }
 
         cout << "\"";
-        result_maxlength *= 2;
+        *ptrR *= 2;
         testCase++;
     }
 }

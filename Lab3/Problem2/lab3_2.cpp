@@ -7,33 +7,33 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
 
 int main(){
 
-    // function 1: reverse
+    // FUNCTION 1: reverse
+    // change s[] to get varying outputs
     char s[] = "Hello, my name is Evan.";
     reverse(s);
 
-    // function 2: concat
-    int result_maxlength = 5;
+    // FUNCTION 2: concat
+    // change result_maxlength to get varying outputs
+    int result_maxlength = 10;
     const char a[] = "chicken";
     const char b[] = "waffle";
     char result[result_maxlength]; // buffer result
     concat(a, b, result, result_maxlength); 
 
-    //for (int o = 0; o < result_maxlength; o++){
-    //    cout << "result from main: "<< result[o];
-    //}
-    
-
     return 0;
 }
 
 void reverse(char s[]){
+
+    // create pointer to char
+    char *ptr = s;
     int i = 0;
     int sizeOf = 0;
 
     // iterate through the address and checks if it returns an item
     bool isDone = false;
     while(isDone == false){
-        if (*(s + i)) {
+        if (*(ptr + i)) {
             sizeOf++; // still in the array
         } else {
             isDone = true; // not in the array, flag isDone
@@ -41,32 +41,28 @@ void reverse(char s[]){
         i++;
     }
 
-    // create a dynamically allocated array to store the size
-    // of the inputted string. add each string character 
-    // starting from the last to reverse it.
-    char *newStr = new char[sizeOf];
+    // define new string with new size
+    char newStr[sizeOf];
     for (int i = 0; i <= sizeOf; i++){
-        newStr[i] = (*(s + (sizeOf - i)));
+        newStr[i] = (*(ptr + (sizeOf - i)));
         cout << newStr[i];
     }
     cout << endl;
 
-    delete [] newStr;
-    newStr = nullptr;
 }
 
 void concat(const char a[], const char b[], char result[], int result_maxlength){
 
-    // get the size of a -> add to new char array
-    int i;
-    bool isDone;
+    // create pointer to constants
+    const char *ptrA = a;
+    const char *ptrB = b;
 
-    i = 0;
+    // get the size of a -> add to new char array
+    int i = 0;
     int sizeOfA = 0;
-    isDone = false;
-    
+    bool isDone = false;
     while(isDone == false){
-        if (*(a + i)) {
+        if (*(ptrA + i)) {
             sizeOfA++; // still in the array
         } else {
             isDone = true; // not in the array, flag isDone
@@ -79,7 +75,7 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
     int sizeOfB = 0;
     isDone = false;
     while(isDone == false){
-        if (*(b + i)) {
+        if (*(ptrB + i)) {
             sizeOfB++; // still in the array
         } else {
             isDone = true; // not in the array, flag isDone

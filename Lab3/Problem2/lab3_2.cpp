@@ -6,7 +6,7 @@ void reverse(char s[]);
 void concat(const char a[], const char b[], char result[], int result_maxlength);
 
 int main(){
-    cout << "*******************TESTING***********************\n";
+    cout << "\n*******************TESTING***********************\n";
     // FUNCTION 1: reverse
     // change s[] to get varying outputs
     cout << "FUNCTION 1: reverse \n";
@@ -20,11 +20,11 @@ int main(){
     // max length 10 and 20 are outputted, as seein in the sample run
     cout << "FUNCTION 2: concat \n";
     int result_maxlength = 5;
-    const char a[] = "chicken";
-    const char b[] = "waffle";
+    const char a[] = "The FitnessGram pacer test";
+    const char b[] = "is multistage aerobic";
     char result[result_maxlength]; // buffer result
     concat(a, b, result, result_maxlength); 
-    cout << "\n*************************************************\n";
+    cout << "\n*************************************************\n\n";
     return 0;
 }
 
@@ -112,13 +112,12 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
         *ptr++ = b[k];
     }
 
-    // point to original char a[]
+    // point to original char a[] and char[b]
     cout << "If char a[] = \"";
     for (int i = 0; i <= sizeOfA; i++){
         cout << ptrA[i];
     }
 
-    // point to original char b[]
     cout << "\" and char b[] = \"";
     for (int i = 0; i <= sizeOfB; i++){
         cout << ptrB[i];
@@ -144,6 +143,7 @@ void concat(const char a[], const char b[], char result[], int result_maxlength)
         cout << "\nmax_length = " << *ptrR << " ---> \"";
         for (int o = 0; o < outLength; o++){
             cout << buffer[o];
+            // point to result and change it based on these conditions
         }
 
         cout << "\"";

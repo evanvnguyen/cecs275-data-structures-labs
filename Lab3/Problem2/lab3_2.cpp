@@ -38,7 +38,7 @@ void reverse(char s[]){
     // iterate through the address and checks if it returns an item
     bool isDone = false;
     while(isDone == false){
-        if (*(ptr + i)) {
+        if (ptr[i]) {
             sizeOf++; // still in the array
         } else {
             isDone = true; // not in the array, flag isDone

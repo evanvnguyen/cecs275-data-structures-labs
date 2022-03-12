@@ -117,6 +117,8 @@ vector<int> read_data(string inputFile) {
     for (int i : number_List){
         cout << i << " ";
     }
+
+    inFile.close();
     return number_List;
 }
 
@@ -238,7 +240,7 @@ void outToFile(vector<int> sortedData, int min, int max, float avg){
 
         for (int c = 0; c < unique.size(); c++){
             if (((unique[c] + 1) != unique[c+1]))
-                if (unique[c] + 1 > unique_Val && ((unique[c] + 1) < sortedData[i+1]))
+                if ((unique[c] + 1 > unique_Val) && ((unique[c] + 1) < sortedData[i+1]))
                     cout << unique[c] + 1 << ":       (0)" << endl;
                     outputFile << unique[c] + 1 << ":        (0)" << endl;
                     //cout << unique[c] + 1 << ":        (0)" << endl;

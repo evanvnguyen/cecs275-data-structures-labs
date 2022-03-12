@@ -12,16 +12,14 @@ using namespace std;
 // int min - takes a sorted vector<int> as an argument and returns the minimum value
 // float avg - takes a vector<int> as an argument and returns the average
 // vector<int> frequency - takes a sorted vector<int> as an argument and returns a vector that contains the count of a number connected via subscript (i.e., #1 = vector[0], where vector[0] contains 3. #1's frequency is 3.). parallel array
-// void output_file - takes frequency vector<int>, min, max, and avg as an argument and outputs formatted data into frequency.txt
 // void swap - takes reference arguments a & b and swaps them. use for sorting
 
 vector<int> read_data(string inputFile);
 vector<int> sort_data(vector<int> rawData, int vecSize);
-vector<int> frequency(vector<int> sortedData);
+vector<int> outToFile(vector<int> sortedData, int minValue, int maxValue, float);
 int max_val(vector<int> sortedData);
 int min_val(vector<int> sortedData);
 float avg(vector<int> sortedData, int vecSize);
-void output_file(vector<int> frequencyData, int maxValue, int minValue, float avgValue);
 void swap(int &a, int&b);
 
 int main(){
@@ -31,26 +29,19 @@ int main(){
     
     vector<int> rawData = read_data(file);
 
-    //TEST VECTOR
-    //vector<int> rawData = {1, 65, 2, 63, 643, 42, 11, 33, 55}; 
-
     // get the vector size to use in other functions
     for (int h : rawData){
         vecSize++;
     }
 
     vector<int> sortedData = sort_data(rawData, vecSize);
-    vector<int> frequencyData = frequency(sortedData);
     
     int minValue = min_val(sortedData);
     int maxValue = max_val(sortedData);
     
     float avgValue = avg(sortedData, vecSize);
+    outToFile(sortedData, minValue, maxValue, avgValue);
     
-    //output_file(frequencyData, maxValue, minValue, avgValue);
-
-    //DEBUG
-    //read_data(file);
     return 0;
 }
 
@@ -87,7 +78,6 @@ vector<int> read_data(string inputFile) {
             {
                 word[i] = ' ';
             }
-            // Debug
             temp_Word += word[i]; // temp_Word holds our number list with spaces instead of commas
         }
     }
@@ -166,7 +156,6 @@ int max_val(vector<int> sortedData){
 
 // compute the average of the vector
 float avg(vector<int> sortedData, int vecSize){
-    
     double sum = 0.0;
     double average_2pt = 0.0;
 
@@ -176,43 +165,72 @@ float avg(vector<int> sortedData, int vecSize){
 
     // round to 2 decimal points
     average_2pt = ceil((sum / vecSize) * 100.0) / 100.0;
-    //cout << "\n" << "The Average is " << average_2pt << endl;
     return average_2pt;
 }
 
-vector<int>frequency(vector<int> sortedData){
+vector<int>outToFile(vector<int> sortedData, int min, int max, float avg){
     vector<int>count;
     int value;
     int freq = 0;
     int unique_Val;
     int range = sortedData.size();
-    char asterisks = '*';
+    int numS = 0;
+    int none = 0;
     cout << '\n';
+
+    ofstream outputFile("frequency.txt");
     for (int i = 0; i < range; i++){
         unique_Val = sortedData[i];
-        //count.push_back(unique_Val);
+
+
+
         int j = 0;
+        
         cout << unique_Val;
+
+        outputFile << unique_Val;
+
         while (sortedData[i+j]==unique_Val){
             //cout << "sortedData[" << i << "+" << j << "]: " << sortedData[i+j] << " unique_Val: " << unique_Val << endl;
             j++;
             freq++;
             //cout << "Unique_Val: " << unique_Val << "Frequency: " << freq << endl;
         }
-        cout << ": ";
+        cout << ":";
+        outputFile << ":";
+
         for (int i=0; i < freq; i++){
             if (freq != 0){
-                cout << "*";
+                cout <<"*";
+                numS++;
+                outputFile << "*";
             }
-            else{
+            else {
                 break;
             }
         }
-        cout << " " << "(" << freq << ")" << endl;
+
+        if (unique_Val < 10) {
+            cout << setw(9-numS);
+            outputFile << setw(9-numS);
+        } else {
+            cout << setw(8-numS);
+            outputFile << setw(8-numS);
+        }
+
+        cout << "(" << freq << ")" << endl;
+        outputFile << " " << "(" << freq << ")" << endl;
+
         if (sortedData[i+j]!= unique_Val){
             i = i+j-1;
         }
+        numS = 0;
         freq = 0;
     }
+
+    outputFile << "The maximum is " << max << "." << endl;  
+    outputFile << "The minimum is " << min << "." << endl;
+    outputFile << "The average is " << avg <<". (Format with 2 decimal places)";
+    outputFile.close();
 }
    

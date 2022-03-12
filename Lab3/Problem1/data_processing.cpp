@@ -61,7 +61,7 @@ void swap(int &a, int &b) {
     b = temp;
 }
 
-// read data.txt and output it cleanly to a vector<int>
+// read data.txt and output it cleanly to a vector int
 vector<int> read_data(string inputFile) {
     vector<int> number_List;
     string word, temp_Word;
@@ -194,7 +194,7 @@ void outToFile(vector<int> sortedData, int min, int max, float avg){
         unique.push_back(unique_Val); // store unique values
         int j = 0;
         
-        //cout << unique_Val;
+        cout << unique_Val;
 
         outputFile << unique_Val;
         // check unique values and determine if the next value is == to it.
@@ -205,13 +205,13 @@ void outToFile(vector<int> sortedData, int min, int max, float avg){
             //cout << "Unique_Val: " << unique_Val << "Frequency: " << freq << endl;
         }
 
-        //cout << ":";
+        cout << ":";
         outputFile << ":";
         
         // append *'s
         for (int i=0; i < freq; i++){
             if (freq != 0){
-                //cout <<"*";
+                cout <<"*";
                 numS++;
                 outputFile << "*";
             }
@@ -222,14 +222,14 @@ void outToFile(vector<int> sortedData, int min, int max, float avg){
 
         // set teh width to accomodate 2 digit numbers
         if (unique_Val < 10) {
-            //cout << setw(9-numS);
+            cout << setw(9-numS);
             outputFile << setw(9-numS);
         } else {
-            //cout << setw(8-numS);
+            cout << setw(8-numS);
             outputFile << setw(8-numS);
         }
 
-        //cout << "(" << freq << ")" << endl;
+        cout << "(" << freq << ")" << endl;
         outputFile << " " << "(" << freq << ")" << endl;
 
         if (sortedData[i+j]!= unique_Val){
@@ -239,7 +239,7 @@ void outToFile(vector<int> sortedData, int min, int max, float avg){
         for (int c = 0; c < unique.size(); c++){
             if (((unique[c] + 1) != unique[c+1]))
                 if (unique[c] + 1 > unique_Val && ((unique[c] + 1) < sortedData[i+1]))
-                    //cout << unique[c] + 1 << ":       (0)" << endl;
+                    cout << unique[c] + 1 << ":       (0)" << endl;
                     outputFile << unique[c] + 1 << ":        (0)" << endl;
                     //cout << unique[c] + 1 << ":        (0)" << endl;
         }

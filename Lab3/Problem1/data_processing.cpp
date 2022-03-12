@@ -61,6 +61,7 @@ void swap(int &a, int &b) {
     b = temp;
 }
 
+// read data.txt and output it cleanly to a vector<int>
 vector<int> read_data(string inputFile) {
     vector<int> number_List;
     string word, temp_Word;

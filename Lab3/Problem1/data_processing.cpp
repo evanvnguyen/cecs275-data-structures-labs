@@ -25,10 +25,10 @@ using namespace std;
 
 vector<int> read_data(string inputFile);
 vector<int> sort_data(vector<int> rawData, int vecSize);
-vector<int> outToFile(vector<int> sortedData, int minValue, int maxValue, float avg);
 int max_val(vector<int> sortedData);
 int min_val(vector<int> sortedData);
 float avg(vector<int> sortedData, int vecSize);
+void outToFile(vector<int> sortedData, int minValue, int maxValue, float avg);
 void swap(int &a, int&b);
 
 int main(){
@@ -177,7 +177,7 @@ float avg(vector<int> sortedData, int vecSize){
 }
 
 // output to file 
-vector<int>outToFile(vector<int> sortedData, int min, int max, float avg){
+void outToFile(vector<int> sortedData, int min, int max, float avg){
     vector<int> count;
     vector<int> unique;
     int value;

@@ -20,8 +20,8 @@ int main(){
     // max length 10 and 20 are outputted, as seein in the sample run
     cout << "FUNCTION 2: concat \n";
     int result_maxlength = 5;
-    const char a[] = "The FitnessGram pacer test";
-    const char b[] = "is multistage aerobic";
+    const char a[] = "chicken";
+    const char b[] = "waffle";
     char result[result_maxlength]; // buffer result
     concat(a, b, result, result_maxlength); 
     cout << "\n*************************************************\n\n";

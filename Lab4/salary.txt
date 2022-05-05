@@ -1,0 +1,4 @@
+EmployeeID LastName FirstName Salary
+0001101221     Minh      Nguyen          40,000 
+end!
+0001101221     Minh      Nguyen          40,000 

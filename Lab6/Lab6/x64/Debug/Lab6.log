@@ -1,0 +1,5 @@
+﻿  Course.cpp
+  main.cpp
+  Student.cpp
+  Generating Code...
+C:\OneDrive\CLASS\CECS 275\CECS-275-LABS\Lab6\Lab6\LinkedList.h(132): error C4703: potentially uninitialized local pointer variable 'previousNode' used
